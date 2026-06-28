@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bridge The Card Game Tutorials by Shafik Ismail</title>
+    <style>
+        :root {
+            --primary: #1b4d3e; /* Rich Card Table Green */
+            --accent: #d4af37;  /* Gold Accent */
+            --dark: #222;
+            --light: #f4f6f4;
+            --gray: #e2e8f0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        header {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+            border-bottom: 5px solid var(--accent);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        header h1 { margin: 0; font-size: 2.8rem; letter-spacing: 0.5px; }
+        header p { margin: 1rem 0 0; font-size: 1.2rem; color: #cbdccb; font-weight: 300; }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Dynamic Filter Buttons */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            background-color: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 0.6rem 1.4rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 10px rgba(27, 77, 62, 0.2);
+        }
+        
+        /* Video Grid Dynamic Layout */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
+        }
+        .video-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        .video-card.hidden {
+            display: none;
+        }
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            background-color: #000;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .video-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .video-info h3 {
+            margin: 0 0 0.75rem 0;
+            color: var(--primary);
+            font-size: 1.25rem;
+            line-height: 1.4;
+        }
+        .video-info p {
+            margin: 0 0 1rem 0;
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .tag {
+            align-self: flex-start;
+            background-color: #e6f0ec;
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Bridge The Card Game Tutorials</h1>
+        <p>Master strategy, rules, and bidding systems with lessons by Shafik Ismail</p>
+    </header>
+
+    <div class="container">
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterVideos('all')">All Lessons</button>
+            <button class="filter-btn" onclick="filterVideos('basics')">The Basics</button>
+            <button class="filter-btn" onclick="filterVideos('bidding')">Bidding Systems</button>
+            <button class="filter-btn" onclick="filterVideos('advanced')">Advanced Carding</button>
+        </div>
+
+        <div class="video-grid">
+
+            <div class="video-card" data-category="basics">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/siGIciunbQw" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>Lesson 1: Simple Basic Introduction to Bridge</h3>
+                    <p>Learn the fundamental structure of the game, table arrangements, suit counts, and initial trick layouts.</p>
+                    <span class="tag">Basics</span>
+                </div>
+            </div>
+
+            <div class="video-card" data-category="bidding">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/ve7Y_DE3ciM" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>Lesson 7: 4-Way Transfers</h3>
+                    <p>A detailed explanation of managing opening bids and executing smooth response structures with 4-way transfers.</p>
+                    <span class="tag">Bidding</span>
+                </div>
+            </div>
+
+            <div class="video-card" data-category="bidding">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/ve7Y_DE3ciM" alt="Redirected to Lesson 8 context" srcdoc="<style>body{background:#000;margin:0;display:flex;justify-content:center;align-items:center;height:100vh;color:#fff;font-family:sans-serif}</style><div>Garbage Stayman Tutorial</div>" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>Lesson 8: Garbage Stayman</h3>
+                    <p>Breaking down the rules of the unique Garbage Stayman response system to extract maximum strategy from weak hands.</p>
+                    <span class="tag">Bidding</span>
+                </div>
+            </div>
+
+            <div class="video-card" data-category="bidding">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/G0dsjkva4sA" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>Lesson 13: Disturbing Opponents No Trump (D.O.N.T.)</h3>
+                    <p>Unpacking the mechanics of defensive conventions and implementing strategic overcalls to contest opponent 1NT systems.</p>
+                    <span class="tag">Bidding</span>
+                </div>
+            </div>
+
+            <div class="video-card" data-category="bidding">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/Qy71N9FxUoc" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>Lesson 17: Multi-Bidding and Jacoby Transfers</h3>
+                    <p>Mastering responses following a partner's major open to secure game-forcing conditions dynamically.</p>
+                    <span class="tag">Bidding</span>
+                </div>
+            </div>
+
+            <div class="video-card" data-category="advanced">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/WjKPYXrlEec" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>Lesson 26: Upside Down Count and Attitude (UDCA)</h3>
+                    <p>Deep dive into modern signals. Learn how reversing high-low defense logic signals odd counts and suit preferences securely.</p>
+                    <span class="tag">Advanced Play</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function filterVideos(category) {
+            // Update active button styling
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter individual video layout cards dynamically
+            const cards = document.querySelectorAll('.video-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
